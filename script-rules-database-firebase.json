@@ -1,0 +1,52 @@
+{
+  "rules": {
+    "users": {
+      ".read": "auth !== null",
+      "$uid": {
+        ".read": "auth !== null && ($uid === auth.uid || root.child('users/' + auth.uid + '/status').val() === 'Admin')",
+        ".write": "auth !== null && ($uid === auth.uid || root.child('users/' + auth.uid + '/status').val() === 'Admin')",
+
+        "name": {
+          ".read": "auth !== null",
+          ".write": "auth !== null && ($uid === auth.uid || root.child('users/' + auth.uid + '/status').val() === 'Admin')"
+        },
+        "bio": {
+          ".read": "auth !== null",
+          ".write": "auth !== null && ($uid === auth.uid || root.child('users/' + auth.uid + '/status').val() === 'Admin')"
+        },
+        "website": {
+          ".read": "auth !== null",
+          ".write": "auth !== null && ($uid === auth.uid || root.child('users/' + auth.uid + '/status').val() === 'Admin')"
+        },
+        "image": {
+          ".read": "auth !== null",
+          ".write": "auth !== null && ($uid === auth.uid || root.child('users/' + auth.uid + '/status').val() === 'Admin')"
+        },
+        "email": {
+          ".read": false,
+          ".validate": "newData.isString() && newData.val().matches(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$/)"
+        },
+        "premiumAcc": {
+          ".read": "auth !== null && ($uid === auth.uid || root.child('users/' + auth.uid + '/status').val() === 'Admin')",
+          ".write": "auth !== null && root.child('users/' + auth.uid + '/status').val() === 'Admin'"
+        },
+        "lisensi": {
+          ".read": "auth !== null && ($uid === auth.uid || root.child('users/' + auth.uid + '/status').val() === 'Admin')",
+          ".write": "auth !== null && root.child('users/' + auth.uid + '/status').val() === 'Admin'"
+        },
+        "expired": {
+          ".read": "auth !== null && ($uid === auth.uid || root.child('users/' + auth.uid + '/status').val() === 'Admin')",
+          ".write": "auth !== null && root.child('users/' + auth.uid + '/status').val() === 'Admin'"
+        },
+        "status": {
+          ".read": "auth !== null && ($uid === auth.uid || root.child('users/' + auth.uid + '/status').val() === 'Admin')",
+          ".write": "auth !== null && root.child('users/' + auth.uid + '/status').val() === 'Admin'"
+        },
+        "linMedsos": {
+          ".read" : "auth !== null",
+          ".write": "auth !== null && ($uid === auth.uid || root.child('users/' + auth.uid + '/status').val() === 'Admin')"
+        },
+      }
+    },
+  }
+}
